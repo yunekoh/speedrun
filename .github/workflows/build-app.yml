@@ -64,14 +64,14 @@ jobs:
 
       - name: install dependencies
         run: npm install
-
+        
       - name: execute build
         run: npm run build
 
       - name: upload artifacts
         uses: actions/upload-pages-artifact@v1
         with:
-          path: "./out"
+          path: "./build"
 
       - name: Deploy to GitHub Pages
         id: deployment

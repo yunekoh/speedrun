@@ -1,6 +1,7 @@
 {
   "name": "speedrun",
   "version": "0.1.0",
+  "homepage": "https://yunekoh.github.io/speedrun/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -17,6 +18,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "serve": "node --version",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

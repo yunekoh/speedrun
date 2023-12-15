@@ -39,43 +39,27 @@ jobs:
         run: npm run test
 
   deploy:
-    #needs: test
-
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-
-    environment:
-      name: production
-      url: ${{ steps.deployment.outputs.page_url }}
-
+    needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: setup node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18.x"
+          node-version: 18.x
 
-      - name: install dependencies
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifact
+          path: build
+
+      - name: Install Dependencies
         run: npm install
 
-      - name: execute build
-        run: npm run build
-
-      - name: upload artifacts
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: "./build"
-
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v3
-
-      - name: Serve app
-        run: npm start
+        run: npm run deploy
+        env:
+          CI: true

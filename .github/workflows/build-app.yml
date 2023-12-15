@@ -68,7 +68,7 @@ jobs:
       - name: execute build
         run: npm run build
         env:
-          PUBLIC_URL: <nome_repo>
+          PUBLIC_URL: speedrun
 
       - name: upload artifacts
         uses: actions/upload-pages-artifact@v1

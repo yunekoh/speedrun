@@ -39,7 +39,7 @@ jobs:
         run: npm run test
 
   deploy:
-    #needs: test
+    needs: test
 
     permissions:
       contents: write
@@ -67,6 +67,8 @@ jobs:
 
       - name: execute build
         run: npm run build
+        env:
+          PUBLIC_URL: <nome_repo>
 
       - name: upload artifacts
         uses: actions/upload-pages-artifact@v1
@@ -77,5 +79,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v3
 
-      - name: Serve app
-        run: npm run serve
+      # - name: Serve app
+      #   run: npm run serve
